@@ -1,17 +1,22 @@
 import "../styles/loginForm.css";
-import { postAPI } from "../api/post";
+import { login, getProfil } from "../api/callAPI";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setToken, connect, setUser } from "../store/store";
 
 export function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleSignInClick = async (event) => {
     event.preventDefault();
 
     const data = { email: username, password: password };
-    postAPI(
+    //call api for get token 
+    login(
       "http://localhost:3001/api/v1/user/login",
       data
     ).then((data) => {
@@ -23,9 +28,11 @@ export function LoginForm() {
       else{
         setPassword("")
         setUsername("")
+        dispatch(connect());
+        dispatch(setToken(data.body.token));
+        getProfil("http://localhost:3001/api/v1/user/profile",data.body.token).then((data) =>{dispatch(setUser(data.body))})
         return navigate("/profil");}
-      
-    });
+    })
   };
   return (
     <section className="sign-in-content">
