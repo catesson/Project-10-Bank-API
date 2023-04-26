@@ -6,8 +6,8 @@ export function LogoutButton({ name }) {
 
   const handleDisconnectInClick = (event) => {
     event.preventDefault();
-    dispatch(disconnected());
     window.location = '/'
+    dispatch(disconnected()); 
   };
 
   return (

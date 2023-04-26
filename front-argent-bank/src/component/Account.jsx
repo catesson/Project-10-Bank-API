@@ -1,4 +1,4 @@
-import "../styles/account.css"
+
 
 export function Account({countType, value, balance}){
     return <section className="account">

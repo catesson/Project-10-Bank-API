@@ -15,9 +15,10 @@ root.render(
 <Provider store={store}>
   <React.StrictMode>
     
-   <div>
+   <div><button onClick={logStore}> test</button>
+    <button onClick={seeStore}> SEE</button>
     <Header/> 
-    <button onClick={logStore}> test</button>
+    
     <Router>
     <MyRoute/>
     </Router>
@@ -29,4 +30,8 @@ root.render(
 
 function logStore () {
   store.dispatch({type : "connect"});
+}
+
+function seeStore () {
+  console.log(store.getState());
 }

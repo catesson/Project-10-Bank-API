@@ -1,16 +1,16 @@
 import { Account } from "../component/Account";
 import { useSelector } from "react-redux";
+import { HeadUser } from "../component/HeadUser";
+import { HeadUserEdit } from "../component/HeadUserEdit";
+import "../styles/user.css"
 
 export function User() {
-  const firstName = useSelector((state) => state.user.firstName)
-  const lastName = useSelector((state) => state.user.lastName)
-  
+  const userEdit = useSelector((state)=> state.edit)
+
+const head = userEdit ? <HeadUserEdit/> : <HeadUser />
   return (
     <main className="main bg-dark">
-        <div className="header">
-        <h1>Welcome back<br />{ firstName+ " "+lastName}</h1>
-        <button className="edit-button">Edit Name</button>
-      </div>
+        {head}
       <h2 className="sr-only">Accounts</h2>
       <Account
         countType="Argent Bank Checking (x8349)"
