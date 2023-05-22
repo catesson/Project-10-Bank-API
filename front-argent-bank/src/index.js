@@ -10,28 +10,18 @@ import { store } from './store/store';
 
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Provider store={store}>
   <React.StrictMode>
-    
-   <div><button onClick={logStore}> test</button>
-    <button onClick={seeStore}> SEE</button>
-    <Header/> 
-    
+    <Header/>     
     <Router>
     <MyRoute/>
     </Router>
-    <Footer/></div>
+    <Footer/>
   </React.StrictMode>
   </Provider>
 );
 
 
-function logStore () {
-  store.dispatch({type : "connect"});
-}
-
-function seeStore () {
-  console.log(store.getState());
-}
